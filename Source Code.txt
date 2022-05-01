@@ -1,0 +1,60 @@
+This is my own work*
+Joseph Carrillo 
+CST-150 C# I 
+Activity 11
+05/01/22
+
+
+public class Dice
+{
+    // private field for number of sides of the die
+    private int numberSides;
+
+    // For Random number generation
+    private static Random rnd = new Random();
+
+    public Dice(int numberSides)
+    {
+        // constructor
+        if (numberSides < 4 || numberSides > 20)
+        {
+            
+            throw new ArgumentOutOfRangeException("Be in Range [4, 20]"); // 4,20
+        }
+
+        this.numberSides = numberSides;
+    }
+
+    public int rollDie() // rolldie method 
+    {
+        return rnd.Next(1, numberSides + 1); // return face value 
+    }
+
+}
+
+public class DieTest
+{
+    public static void Main()
+    {
+        Dice diceOne = new Dice(6);
+        Dice diceTwo = new Dice(6);
+
+        int diceOneRoll, 
+            diceTwoRoll;
+        int numberOfRolls = 0;
+
+        do
+        {
+            // roll dice
+            diceOneRoll = diceOne.rollDie();
+            diceTwoRoll = diceTwo.rollDie();
+            // output
+            Console.WriteLine("Rolled:[" + diceOneRoll + ", " + diceTwoRoll + "]");
+
+            ++numberOfRolls;
+            
+        } while (diceOneRoll != 1 || diceTwoRoll != 1);
+        // snake eyes!
+        Console.WriteLine("\nCongrats! " + numberOfRolls + " rolls to get snake eyes!");
+    }
+}
